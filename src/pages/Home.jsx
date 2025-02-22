@@ -89,52 +89,68 @@ function Home() {
       {/* Partners Section */}
       <div className="border-t border-gray-100 bg-white">
         <div className="container py-6 sm:py-8">
-          <p className="text-center text-sm sm:text-base text-gray-500 mb-4 sm:mb-6">Partners:</p>
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 0.4 }}
-            className="flex flex-wrap justify-center items-center gap-8 sm:gap-16 lg:gap-24 px-4">
-            <motion.a 
-              whileHover={{ scale: 1.05 }}
-              href="https://www.notion.so/education" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="hover:opacity-100 transition-opacity w-24 sm:w-32">
-              <img
-                src="/Notion.png"
-                alt="Notion Education"
-                className="h-8 sm:h-12 w-auto object-contain"
-                style={{ filter: 'brightness(0.9)' }}
-              />
-            </motion.a>
-            <motion.a 
-              whileHover={{ scale: 1.05 }}
-              href="https://github.com" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="hover:opacity-100 transition-opacity w-24 sm:w-32">
-              <img
-                src="/Github.png"
-                alt="GitHub"
-                className="h-8 sm:h-12 w-auto object-contain"
-                style={{ filter: 'brightness(0.9)' }}
-              />
-            </motion.a>
-            <motion.a 
-              whileHover={{ scale: 1.05 }}
-              href="https://theblokc.com/" 
-              target="_blank" 
-              rel="noopener noreferrer" 
-              className="hover:opacity-100 transition-opacity w-24 sm:w-32">
-              <img
-                src="/TheBlock.png"
-                alt="The Block"
-                className="h-8 sm:h-12 w-auto object-contain"
-                style={{ filter: 'brightness(0.9)' }}
-              />
-            </motion.a>
-          </motion.div>
+          <div className="space-y-8">
+            {/* Technology Partners */}
+            <div>
+              <p className="text-center text-sm sm:text-base text-gray-500 mb-4 sm:mb-6">Technology Partners:</p>
+              <motion.div 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.4 }}
+                className="flex justify-center items-center gap-8 sm:gap-16">
+                <motion.a 
+                  whileHover={{ scale: 1.05 }}
+                  href="https://www.notion.so/education" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="hover:opacity-100 transition-opacity w-24 sm:w-32">
+                  <img
+                    src="/Notion.png"
+                    alt="Notion Education"
+                    className="h-8 sm:h-12 w-auto object-contain"
+                    style={{ filter: 'brightness(0.9)' }}
+                  />
+                </motion.a>
+                <motion.a 
+                  whileHover={{ scale: 1.05 }}
+                  href="https://github.com" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="hover:opacity-100 transition-opacity w-24 sm:w-32">
+                  <img
+                    src="/Github.png"
+                    alt="GitHub"
+                    className="h-8 sm:h-12 w-auto object-contain"
+                    style={{ filter: 'brightness(0.9)' }}
+                  />
+                </motion.a>
+              </motion.div>
+            </div>
+
+            {/* Organization Partners */}
+            <div>
+              <p className="text-center text-sm sm:text-base text-gray-500 mb-4 sm:mb-6">Organization Partners:</p>
+              <motion.div 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.4 }}
+                className="flex justify-center items-center">
+                <motion.a 
+                  whileHover={{ scale: 1.05 }}
+                  href="https://theblokc.com/" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="hover:opacity-100 transition-opacity w-24 sm:w-32">
+                  <img
+                    src="/TheBlock.png"
+                    alt="The Block"
+                    className="h-8 sm:h-12 w-auto object-contain"
+                    style={{ filter: 'brightness(0.9)' }}
+                  />
+                </motion.a>
+              </motion.div>
+            </div>
+          </div>
         </div>
       </div>
 
