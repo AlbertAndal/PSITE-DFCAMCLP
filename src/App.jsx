@@ -3,9 +3,10 @@ import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react
 import { Bars3Icon, XMarkIcon } from '@heroicons/react/24/outline'
 import Home from './pages/Home'
 import About from './pages/About'
-import Events from './pages/Events'
 import Resources from './pages/Resources'
 import Contact from './pages/Contact'
+import Events from './pages/Events'
+import AdminDashboard from './pages/AdminDashboard'
 
 // ScrollToTop component to handle scroll behavior
 function ScrollToTop() {
@@ -26,7 +27,7 @@ function App() {
     { name: 'About Us', href: '/about' },
     { name: 'Events', href: '/events' },
     { name: 'Resources', href: '/resources' },
-    { name: 'Contact', href: '/contact' },
+    { name: 'Contact', href: '/contact' }
   ]
 
   return (
@@ -106,6 +107,7 @@ function App() {
             <Route path="/events" element={<Events />} />
             <Route path="/resources" element={<Resources />} />
             <Route path="/contact" element={<Contact />} />
+            <Route path="/admin" element={<AdminDashboard />} />
           </Routes>
         </main>
       </div>
@@ -150,6 +152,8 @@ function App() {
               <li>Address: FX6H+M2C, Dandelion St, Dona Manuela, Subd, Las Piñas</li>
             </ul>
           </div>
+
+
         </div>
     
         {/* Copyright */}

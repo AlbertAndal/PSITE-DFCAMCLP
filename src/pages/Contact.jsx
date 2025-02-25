@@ -1,8 +1,10 @@
 import { motion } from 'framer-motion'
 import { EnvelopeIcon, PhoneIcon, MapPinIcon } from '@heroicons/react/24/outline'
 import { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
 
 function Contact() {
+  const navigate = useNavigate()
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -24,6 +26,19 @@ function Contact() {
       ...prevState,
       [name]: value
     }))
+  }
+
+  const handleLogin = (e) => {
+    e.preventDefault()
+    const username = document.getElementById('username').value
+    const password = document.getElementById('password').value
+
+    if (username === 'admin' && password === 'admin') {
+      localStorage.setItem('isAuthenticated', 'true')
+      navigate('/admin')
+    } else {
+      alert('Invalid credentials. Please try again.')
+    }
   }
 
   return (
@@ -126,6 +141,8 @@ function Contact() {
                 Send Message
               </motion.button>
             </form>
+
+
           </motion.div>
 
           {/* Contact Information */}
@@ -136,36 +153,41 @@ function Contact() {
             className="space-y-8"
           >
             <div className="bg-white p-8 rounded-lg shadow-sm h-full">
-              <h2 className="text-2xl font-bold text-gray-900 mb-6">Contact Information</h2>
-              <div className="space-y-6">
-                <div className="flex items-center">
-                  <EnvelopeIcon className="h-6 w-6 text-primary-blue mr-3 flex-shrink-0" />
-                  <div>
-                    <p className="font-medium text-gray-900">Email</p>
-                    <a href="mailto:info@psitedfcamclp.org" className="text-gray-600 hover:text-primary-blue transition-colors duration-200">
-                      info@psitedfcamclp.org
-                    </a>
-                  </div>
+              <h2 className="text-2xl font-bold text-gray-900 mb-6">Admin Login</h2>
+              <form onSubmit={handleLogin} className="space-y-6">
+                <div>
+                  <label htmlFor="username" className="block text-sm font-medium text-gray-700 mb-1">
+                    Username
+                  </label>
+                  <input
+                    type="text"
+                    id="username"
+                    name="username"
+                    required
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-blue focus:border-transparent"
+                  />
                 </div>
-                <div className="flex items-center">
-                  <PhoneIcon className="h-6 w-6 text-primary-blue mr-3 flex-shrink-0" />
-                  <div>
-                    <p className="font-medium text-gray-900">Phone</p>
-                    <a href="tel:+1234567890" className="text-gray-600 hover:text-primary-blue transition-colors duration-200">
-                      (123) 456-7890
-                    </a>
-                  </div>
+                <div>
+                  <label htmlFor="password" className="block text-sm font-medium text-gray-700 mb-1">
+                    Password
+                  </label>
+                  <input
+                    type="password"
+                    id="password"
+                    name="password"
+                    required
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-blue focus:border-transparent"
+                  />
                 </div>
-                <div className="flex items-center">
-                  <MapPinIcon className="h-6 w-6 text-primary-blue mr-3 flex-shrink-0" />
-                  <div>
-                    <p className="font-medium text-gray-900">Location</p>
-                    <p className="text-gray-600">
-                      FX6H+M2C, Dandelion St, Dona Manuela, Subd, Las Piñas
-                    </p>
-                  </div>
-                </div>
-              </div>
+                <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  type="submit"
+                  className="w-full bg-primary-blue text-white py-3 px-6 rounded-lg hover:bg-primary-yellow transition-colors duration-200 font-medium"
+                >
+                  Login
+                </motion.button>
+              </form>
             </div>
           </motion.div>
         </div>

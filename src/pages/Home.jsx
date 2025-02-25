@@ -68,84 +68,151 @@ function Home() {
       className="min-h-screen"
     >
       {/* Hero Section */}
-      <div className="bg-white py-24">
+      <div className="bg-white py-16 sm:py-24">
         <div className="container">
           <motion.div 
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay: 0.2 }}
-            className="max-w-3xl mx-auto text-center px-4 sm:px-6">
-            <p className="text-sm sm:text-base font-medium text-primary-blue mb-3">Welcome to</p>
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-4 sm:mb-6 text-gray-900">
-              Best IT Education Community in Town
+            className="max-w-4xl mx-auto text-center px-4 sm:px-6">
+            <p className="text-sm sm:text-base font-medium text-primary-blue tracking-wide uppercase mb-4">Welcome to</p>
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight tracking-tight mb-8">
+              <span className="block text-primary-blue mb-2">Bachelor of Science</span>
+              <span className="block text-primary-blue mb-2">Information Systems</span>
+              <span className="block text-gray-900 mb-6">Education Community on Campus</span>
             </h1>
-            <p className="text-lg sm:text-xl mb-6 sm:mb-8 text-gray-500 px-4">
-              Join PSITE DFCAMCLP Chapter, where we take your teaching excellence to a whole new level! Our community is dedicated to empowering IT educators.
+            <p className="text-xl sm:text-2xl font-medium text-gray-600 mb-8">Unlock Tech Opportunities & Connect with Industry Leaders</p>
+            <p className="text-lg sm:text-xl text-gray-500 max-w-3xl mx-auto leading-relaxed">
+              Join the PSITE DFCAMCLP Chapter and be part of exciting technology events, a strong network of partners, a thriving community, and a growing family of members and alumni.
             </p>
           </motion.div>
         </div>
       </div>
 
       {/* Partners Section */}
-      <div className="border-t border-gray-100 bg-white">
-        <div className="container py-6 sm:py-8">
-          <div className="space-y-8">
+      <div className="border-t border-gray-100 bg-white py-12 sm:py-16">
+        <div className="container">
+          <h2 className="text-2xl sm:text-3xl font-bold text-center text-gray-900 mb-12">Our Partners</h2>
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Technology Partners */}
-            <div>
-              <p className="text-center text-sm sm:text-base text-gray-500 mb-4 sm:mb-6">Technology Partners:</p>
+            <div className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
+              <h3 className="text-xl font-semibold text-center text-gray-900 mb-6">Technology Partners</h3>
               <motion.div 
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.4 }}
-                className="flex justify-center items-center gap-8 sm:gap-16">
+                className="grid grid-cols-2 gap-4">
                 <motion.a 
-                  whileHover={{ scale: 1.05 }}
-                  href="https://www.notion.so/education" 
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  transition={{ duration: 0.2 }}
+                  href="https://www.digitalocean.com/" 
                   target="_blank" 
                   rel="noopener noreferrer" 
-                  className="hover:opacity-100 transition-opacity w-24 sm:w-32">
+                  className="flex items-center justify-center p-4 rounded-lg hover:bg-gray-50">
                   <img
-                    src="/Notion.png"
-                    alt="Notion Education"
-                    className="h-8 sm:h-12 w-auto object-contain"
-                    style={{ filter: 'brightness(0.9)' }}
+                    src="/Digital Ocean.png"
+                    alt="Digital Ocean"
+                    className="h-12 w-auto object-contain"
                   />
                 </motion.a>
                 <motion.a 
-                  whileHover={{ scale: 1.05 }}
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  transition={{ duration: 0.2 }}
+                  href="https://www.notion.so/education" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="flex items-center justify-center p-4 rounded-lg hover:bg-gray-50">
+                  <img
+                    src="/Notion.png"
+                    alt="Notion Education"
+                    className="h-12 w-auto object-contain"
+                  />
+                </motion.a>
+                <motion.a 
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  transition={{ duration: 0.2 }}
                   href="https://github.com" 
                   target="_blank" 
                   rel="noopener noreferrer" 
-                  className="hover:opacity-100 transition-opacity w-24 sm:w-32">
+                  className="flex items-center justify-center p-4 rounded-lg hover:bg-gray-50">
                   <img
                     src="/Github.png"
                     alt="GitHub"
-                    className="h-8 sm:h-12 w-auto object-contain"
-                    style={{ filter: 'brightness(0.9)' }}
+                    className="h-12 w-auto object-contain"
+                  />
+                </motion.a>
+                <motion.a 
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  transition={{ duration: 0.2 }}
+                  href="https://www.facebook.com/Guidlify" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="flex items-center justify-center p-4 rounded-lg hover:bg-gray-50">
+                  <img
+                    src="/Guidlify.png"
+                    alt="Guidlify"
+                    className="h-12 w-auto object-contain"
                   />
                 </motion.a>
               </motion.div>
             </div>
 
             {/* Organization Partners */}
-            <div>
-              <p className="text-center text-sm sm:text-base text-gray-500 mb-4 sm:mb-6">Organization Partners:</p>
+            <div className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
+              <h3 className="text-xl font-semibold text-center text-gray-900 mb-6">Organization Partners</h3>
               <motion.div 
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.4 }}
-                className="flex justify-center items-center">
+                className="flex flex-col space-y-6">
                 <motion.a 
-                  whileHover={{ scale: 1.05 }}
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  transition={{ duration: 0.2 }}
                   href="https://theblokc.com/" 
                   target="_blank" 
                   rel="noopener noreferrer" 
-                  className="hover:opacity-100 transition-opacity w-24 sm:w-32">
+                  className="flex items-center justify-center p-6 rounded-lg hover:bg-gray-50">
                   <img
                     src="/TheBlock.png"
                     alt="The Block"
-                    className="h-8 sm:h-12 w-auto object-contain"
-                    style={{ filter: 'brightness(0.9)' }}
+                    className="h-16 w-auto object-contain"
+                  />
+                </motion.a>
+                <motion.a 
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  transition={{ duration: 0.2 }}
+                  href="#" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="flex items-center justify-center p-6 rounded-lg hover:bg-gray-50">
+                  <img
+                    src="/selyo.png"
+                    alt="Selyo"
+                    className="h-16 w-auto object-contain"
+                  />
+                </motion.a>
+              </motion.div>
+            </div>
+
+            {/* Venue Partners */}
+            <div className="bg-white p-6 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-300">
+              <h3 className="text-xl font-semibold text-center text-gray-900 mb-6">Venue Partners</h3>
+              <motion.div 
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ delay: 0.4 }}
+                className="flex justify-center items-center min-h-[200px]">
+                <motion.a 
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  transition={{ duration: 0.2 }}
+                  href="https://www.linkedin.com/company/ing-hubs-philippines/posts/?feedView=all" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="flex items-center justify-center p-6 rounded-lg hover:bg-gray-50 w-full max-w-[240px]">
+                  <img
+                    src="/ing.png"
+                    alt="ING"
+                    className="w-full h-auto object-contain"
                   />
                 </motion.a>
               </motion.div>
@@ -161,7 +228,7 @@ function Home() {
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.5 }}
           viewport={{ once: true }}
-          className="grid md:grid-cols-3 gap-8">
+          className="grid md:grid-cols-2 gap-8">
           <motion.div 
             whileHover={{ y: -5 }}
             className="bg-white p-6 rounded-lg shadow-sm">
@@ -173,12 +240,6 @@ function Home() {
             className="bg-white p-6 rounded-lg shadow-sm">
             <h3 className="text-xl font-semibold mb-3 text-gray-900">Networking Opportunities</h3>
             <p className="text-gray-500">Connect with fellow IT educators and industry professionals.</p>
-          </motion.div>
-          <motion.div 
-            whileHover={{ y: -5 }}
-            className="bg-white p-6 rounded-lg shadow-sm">
-            <h3 className="text-xl font-semibold mb-3 text-gray-900">Research Collaboration</h3>
-            <p className="text-gray-500">Participate in research projects and academic collaborations.</p>
           </motion.div>
         </motion.div>
       </div>
@@ -193,7 +254,7 @@ function Home() {
             viewport={{ once: true }}
             className="grid md:grid-cols-2 gap-12 items-center">
             <div>
-              <h2 className="text-3xl font-bold text-gray-900 mb-6">Empowering IT Educators Since 2010</h2>
+              <h2 className="text-3xl font-bold text-gray-900 mb-6">Bachelor of Science in Information System Shaping the Future Since 2022</h2>
               <div className="grid grid-cols-2 gap-8 mb-8">
                 <motion.div whileHover={{ scale: 1.05 }}>
                   <p className="text-3xl font-bold text-primary-blue">{animatedNumbers.members}+</p>
@@ -282,7 +343,7 @@ function Home() {
             viewport={{ once: true }}
             className="max-w-3xl mx-auto text-center">
             <h2 className="text-3xl font-bold text-white mb-6">Join Our Growing Community</h2>
-            <p className="text-xl text-white mb-8">Become a member today and be part of the leading IT educators' network in the region.</p>
+            <p className="text-xl text-white mb-8">Become a member today and be part of the leading Bachelor of Science in Information Systems network on campus.</p>
             <motion.div whileHover={{ scale: 1.05 }}>
               <Link
                 to="/contact"

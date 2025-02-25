@@ -135,7 +135,7 @@ function About() {
               className="max-w-3xl mx-auto text-center">
             <h2 className="text-3xl font-bold text-white mb-6">Join Our Community</h2>
             <p className="text-xl text-primary-white mb-8">
-              Be part of our growing network of IT educators and help shape the future of IT education.
+            Become a member today and be part of the leading Bachelor of Science in Information Systems network on campus.
             </p>
             <Link
               to="/contact"
