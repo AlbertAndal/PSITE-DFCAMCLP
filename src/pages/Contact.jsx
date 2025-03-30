@@ -33,7 +33,7 @@ function Contact() {
     const username = document.getElementById('username').value
     const password = document.getElementById('password').value
 
-    if (username === 'admin' && password === 'admin') {
+    if (username === 'admin' && password === 'admi1') {
       localStorage.setItem('isAuthenticated', 'true')
       navigate('/admin')
     } else {

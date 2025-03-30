@@ -9,6 +9,12 @@ function Home() {
     papers: 0,
     institutions: 0
   })
+  
+  const [typewriterText, setTypewriterText] = useState('')
+  const fullText = "Unlock Tech Opportunities & Connect with Industry Leaders"
+  const [isTypingComplete, setIsTypingComplete] = useState(false)
+  const [isDeleting, setIsDeleting] = useState(false)
+  const [typingSpeed, setTypingSpeed] = useState(100)
 
   const targetNumbers = {
     members: 500,
@@ -17,6 +23,38 @@ function Home() {
     institutions: 20
   }
 
+  // Looping typewriter effect
+  useEffect(() => {
+    let typingTimeout;
+    
+    if (!isDeleting && typewriterText === fullText) {
+      // Full text displayed, pause before deleting
+      setIsTypingComplete(true)
+      typingTimeout = setTimeout(() => {
+        setIsDeleting(true)
+        setTypingSpeed(50) // faster when deleting
+      }, 1500) // pause for 1.5 seconds when text is complete
+    } else if (isDeleting && typewriterText === '') {
+      // Text fully deleted, start typing again
+      setIsDeleting(false)
+      setIsTypingComplete(false)
+      setTypingSpeed(100) // normal speed when typing
+    } else if (isDeleting) {
+      // Delete one character
+      typingTimeout = setTimeout(() => {
+        setTypewriterText(fullText.substring(0, typewriterText.length - 1))
+      }, typingSpeed)
+    } else {
+      // Add one character
+      typingTimeout = setTimeout(() => {
+        setTypewriterText(fullText.substring(0, typewriterText.length + 1))
+      }, typingSpeed)
+    }
+
+    return () => clearTimeout(typingTimeout)
+  }, [typewriterText, isDeleting, fullText, typingSpeed])
+
+  // Stats animation
   useEffect(() => {
     const observer = new IntersectionObserver(
       (entries) => {
@@ -68,23 +106,49 @@ function Home() {
       className="min-h-screen"
     >
       {/* Hero Section */}
-      <div className="bg-white py-16 sm:py-24">
-        <div className="container">
+      <div className="bg-gradient-to-b from-white to-gray-50 py-20 sm:py-28">
+        <div className="container relative overflow-hidden">
+          <div className="absolute inset-0 opacity-5">
+            <div className="absolute top-0 left-0 w-72 h-72 bg-primary-blue rounded-full filter blur-3xl -translate-x-1/2 -translate-y-1/2"></div>
+            <div className="absolute bottom-0 right-0 w-72 h-72 bg-primary-yellow rounded-full filter blur-3xl translate-x-1/2 translate-y-1/2"></div>
+          </div>
           <motion.div 
-            initial={{ y: 20, opacity: 0 }}
+            initial={{ y: 30, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.2 }}
-            className="max-w-4xl mx-auto text-center px-4 sm:px-6">
-            <p className="text-sm sm:text-base font-medium text-primary-blue tracking-wide uppercase mb-4">Welcome to</p>
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight tracking-tight mb-8">
-              <span className="block text-primary-blue mb-2">Bachelor of Science</span>
-              <span className="block text-primary-blue mb-2">Information Systems</span>
-              <span className="block text-gray-900 mb-6">Education Community on Campus</span>
-            </h1>
-            <p className="text-xl sm:text-2xl font-medium text-gray-600 mb-8">Unlock Tech Opportunities & Connect with Industry Leaders</p>
-            <p className="text-lg sm:text-xl text-gray-500 max-w-3xl mx-auto leading-relaxed">
-              Join the PSITE DFCAMCLP Chapter and be part of exciting technology events, a strong network of partners, a thriving community, and a growing family of members and alumni.
-            </p>
+            transition={{ duration: 0.8, ease: "easeOut" }}
+            className="max-w-4xl mx-auto text-center px-4 sm:px-6 relative z-10">
+            <motion.p 
+              initial={{ y: -20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.2 }}
+              className="inline-block text-sm font-semibold text-primary-blue tracking-wider uppercase mb-6 px-4 py-1 rounded-full bg-blue-50 border border-blue-100">
+              Welcome to
+            </motion.p>
+            <motion.div 
+              className="space-y-2 mb-8"
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 0.6, delay: 0.3 }}>
+              <h1 className="text-4xl sm:text-5xl font-bold text-gray-900 leading-tight tracking-tight">
+                <span className="block bg-clip-text text-transparent bg-gradient-to-r from-primary-blue to-blue-600 mb-1">Bachelor of Science</span>
+                <span className="block bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-primary-blue mb-1">Information Systems</span>
+                <span className="block text-gray-800">Education Community</span>
+              </h1>
+            </motion.div>
+            <motion.p 
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.5 }}
+              className="text-lg sm:text-xl font-medium text-gray-700 mb-6 leading-relaxed">
+              {typewriterText}
+            </motion.p>
+            <motion.p 
+              initial={{ y: 20, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ duration: 0.5, delay: 0.6 }}
+              className="text-base sm:text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed">
+              Join the PSITE DFCAMCLP Chapter and be part of exciting technology events, a strong network of partners, a thriving community, and connect with successful graduates and professionals.
+            </motion.p>
           </motion.div>
         </div>
       </div>
@@ -151,6 +215,19 @@ function Home() {
                   <img
                     src="/Guidlify.png"
                     alt="Guidlify"
+                    className="h-12 w-auto object-contain"
+                  />
+                </motion.a>
+                <motion.a 
+                  whileHover={{ scale: 1.05, y: -2 }}
+                  transition={{ duration: 0.2 }}
+                  href="https://e.gov.ph/" 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="flex items-center justify-center p-4 rounded-lg hover:bg-gray-50">
+                  <img
+                    src="/egov.png"
+                    alt="eGov Philippines"
                     className="h-12 w-auto object-contain"
                   />
                 </motion.a>

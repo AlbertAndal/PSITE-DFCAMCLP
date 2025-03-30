@@ -7,6 +7,7 @@ import Resources from './pages/Resources'
 import Contact from './pages/Contact'
 import Events from './pages/Events'
 import AdminDashboard from './pages/AdminDashboard'
+import News from './pages/News'
 
 // ScrollToTop component to handle scroll behavior
 function ScrollToTop() {
@@ -26,6 +27,7 @@ function App() {
     { name: 'Home', href: '/' },
     { name: 'About Us', href: '/about' },
     { name: 'Events', href: '/events' },
+    { name: 'News', href: '/news' },
     { name: 'Resources', href: '/resources' },
     { name: 'Contact', href: '/contact' }
   ]
@@ -105,63 +107,63 @@ function App() {
             <Route path="/" element={<Home />} />
             <Route path="/about" element={<About />} />
             <Route path="/events" element={<Events />} />
+            <Route path="/news" element={<News />} />
             <Route path="/resources" element={<Resources />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/admin" element={<AdminDashboard />} />
           </Routes>
         </main>
       </div>
-    {/* Footer */}
-    <footer className="bg-white border-t">
-      <div className="container py-8">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-          {/* Logo and Description */}
-          <div className="col-span-1 md:col-span-2">
-            <Link to="/" className="inline-block mb-4">
-              <img 
-                src="/psite-logo.png" 
-                className="h-16 w-auto mb-3"
-                alt="PSITE Logo"
-              />
-            </Link>
+      
+      {/* Footer */}
+      <footer className="bg-white border-t">
+        <div className="container py-8">
+          <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+            {/* Logo and Description */}
+            <div className="col-span-1 md:col-span-2">
+              <Link to="/" className="inline-block mb-4">
+                <img 
+                  src="/psite-logo.png" 
+                  className="h-16 w-auto mb-3"
+                  alt="PSITE Logo"
+                />
+              </Link>
+            </div>
+    
+            {/* Quick Links */}
+            <div>
+              <h3 className="font-semibold text-gray-900 mb-4">Quick Links</h3>
+              <ul className="space-y-2">
+                {navigation.map((item) => (
+                  <li key={item.name}>
+                    <Link
+                      to={item.href}
+                      className="text-gray-600 hover:text-primary-600 transition-colors duration-200"
+                    >
+                      {item.name}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+    
+            {/* Contact Info */}
+            <div>
+              <h3 className="font-semibold text-gray-900 mb-4">Contact Us</h3>
+              <ul className="space-y-2 text-gray-600">
+                <li>Email: info@psitedfcamclp.org</li>
+                <li>Phone: (123) 456-7890</li>
+                <li>Address: FX6H+M2C, Dandelion St, Dona Manuela, Subd, Las Piñas</li>
+              </ul>
+            </div>
           </div>
     
-          {/* Quick Links */}
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-4">Quick Links</h3>
-            <ul className="space-y-2">
-              {navigation.map((item) => (
-                <li key={item.name}>
-                  <Link
-                    to={item.href}
-                    className="text-gray-600 hover:text-primary-600 transition-colors duration-200"
-                  >
-                    {item.name}
-                  </Link>
-                </li>
-              ))}
-            </ul>
+          {/* Copyright */}
+          <div className="border-t mt-8 pt-8 text-center text-gray-600">
+            <p>© {new Date().getFullYear()} PSITE DFCAMCLP Chapter. All rights reserved.</p>
           </div>
-    
-          {/* Contact Info */}
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-4">Contact Us</h3>
-            <ul className="space-y-2 text-gray-600">
-              <li>Email: info@psitedfcamclp.org</li>
-              <li>Phone: (123) 456-7890</li>
-              <li>Address: FX6H+M2C, Dandelion St, Dona Manuela, Subd, Las Piñas</li>
-            </ul>
-          </div>
-
-
         </div>
-    
-        {/* Copyright */}
-        <div className="border-t mt-8 pt-8 text-center text-gray-600">
-          <p>© {new Date().getFullYear()} PSITE DFCAMCLP Chapter. All rights reserved.</p>
-        </div>
-      </div>
-    </footer>
+      </footer>
     </Router>
   )
 }

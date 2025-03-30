@@ -1,36 +1,23 @@
-import { motion } from 'framer-motion'
-import { Link } from 'react-router-dom'
+import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
+import { useEvents } from '../context/EventsContext';
+import { useState } from 'react'; // Import useState for managing modal
 
 function Events() {
-  const upcomingEvents = [
-    {
-      id: 1,
-      title: 'Tech Innovation Summit 2024',
-      date: 'March 15, 2024',
-      time: '9:00 AM - 5:00 PM',
-      location: 'DFCAMCLP Main Auditorium',
-      description: 'Join us for a day of exploring cutting-edge technologies and networking with industry leaders.',
-      image: '/event-summit.jpg'
-    },
-    {
-      id: 2,
-      title: 'Web Development Workshop',
-      date: 'March 20, 2024',
-      time: '2:00 PM - 6:00 PM',
-      location: 'Computer Laboratory 3',
-      description: 'Hands-on workshop on modern web development technologies and best practices.',
-      image: '/event-workshop.jpg'
-    },
-    {
-      id: 3,
-      title: 'IT Career Fair 2024',
-      date: 'April 5, 2024',
-      time: '10:00 AM - 4:00 PM',
-      location: 'DFCAMCLP Campus Grounds',
-      description: 'Connect with top tech companies and explore career opportunities in the IT industry.',
-      image: '/event-career.jpg'
-    }
-  ]
+  const { events } = useEvents();
+  const [selectedEvent, setSelectedEvent] = useState(null); // State to track selected event
+  
+  // Function to open event detail modal
+  const openEventDetail = (event) => {
+    setSelectedEvent(event);
+    document.body.style.overflow = 'hidden'; // Prevent scrolling when modal is open
+  };
+  
+  // Function to close event detail modal
+  const closeEventDetail = () => {
+    setSelectedEvent(null);
+    document.body.style.overflow = 'auto'; // Re-enable scrolling
+  };
 
   return (
     <motion.div
@@ -58,14 +45,15 @@ function Events() {
       {/* Events List */}
       <div className="container py-16">
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
-          {upcomingEvents.map((event) => (
+          {events.map((event) => (
             <motion.div
               key={event.id}
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
               viewport={{ once: true }}
-              className="bg-white rounded-lg shadow-sm overflow-hidden"
+              className="bg-white rounded-lg shadow-sm overflow-hidden cursor-pointer"
+              onClick={() => openEventDetail(event)}
             >
               <div className="aspect-w-16 aspect-h-9 bg-gray-200">
                 <div className="p-8 flex items-center justify-center bg-primary-blue bg-opacity-10">
@@ -83,46 +71,83 @@ function Events() {
                   <p className="text-gray-600 mb-4">
                     <span className="font-semibold">Location:</span> {event.location}
                   </p>
-                  <p className="text-gray-600">{event.description}</p>
+                  <p className="text-gray-600 line-clamp-3">{event.description}</p>
                 </div>
-                <Link
-                  to="/register"
-                  state={{ eventId: event.id, eventTitle: event.title }}
-                  className="block w-full bg-primary-blue text-white text-center py-3 rounded-lg hover:bg-primary-yellow transition-colors duration-200"
+                <div 
+                  className="text-center mt-2 mb-4 text-primary-blue hover:underline"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    openEventDetail(event);
+                  }}
                 >
-                  Register Now
-                </Link>
+                  View Details
+                </div>
+                {event.registrationUrl ? (
+                  <a 
+                    href={event.registrationUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block w-full py-2 px-4 bg-primary-blue text-white text-center rounded-lg hover:bg-blue-700 transition-colors"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    Register Now
+                  </a>
+                ) : null}
               </div>
             </motion.div>
           ))}
         </div>
       </div>
 
-      {/* Call to Action */}
-      <div className="bg-primary-blue py-16">
-        <div className="container">
-          <motion.div
-            initial={{ y: 20, opacity: 0 }}
-            whileInView={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-            className="max-w-3xl mx-auto text-center"
-          >
-            <h2 className="text-3xl font-bold text-white mb-6">Don't Miss Out!</h2>
-            <p className="text-xl text-primary-white mb-8">
-              Register now to secure your spot in our upcoming events.
-            </p>
-            <Link
-              to="/register"
-              className="inline-block bg-primary-white text-primary-blue px-8 py-4 rounded-lg font-medium hover:bg-primary-yellow transition-colors duration-200"
-            >
-              Register for Events
-            </Link>
-          </motion.div>
+      {/* Event Detail Modal */}
+      {selectedEvent && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+          <div className="bg-white rounded-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto">
+            <div className="p-6">
+              <div className="flex justify-between items-start mb-4">
+                <h2 className="text-2xl font-bold text-gray-900">{selectedEvent.title}</h2>
+                <button 
+                  onClick={closeEventDetail}
+                  className="text-gray-500 hover:text-gray-700"
+                >
+                  <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                  </svg>
+                </button>
+              </div>
+              
+              <div className="mb-6">
+                <p className="text-gray-600 mb-2">
+                  <span className="font-semibold">Date:</span> {selectedEvent.date}
+                </p>
+                <p className="text-gray-600 mb-2">
+                  <span className="font-semibold">Time:</span> {selectedEvent.time}
+                </p>
+                <p className="text-gray-600 mb-4">
+                  <span className="font-semibold">Location:</span> {selectedEvent.location}
+                </p>
+                <p className="text-gray-700 whitespace-pre-line">{selectedEvent.description}</p>
+              </div>
+              
+              {selectedEvent.registrationUrl && (
+                <div className="mt-6">
+                  <a 
+                    href={selectedEvent.registrationUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block w-full py-2 px-4 bg-primary-blue text-white text-center rounded-lg hover:bg-blue-700 transition-colors"
+                  >
+                    Register Now
+                  </a>
+                </div>
+              )}
+            </div>
+          </div>
         </div>
-      </div>
+      )}
     </motion.div>
-  )
+  );
 }
 
-export default Events
+export default Events;
+                   
